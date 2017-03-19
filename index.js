@@ -1,4 +1,4 @@
-"use strict";
+    "use strict";
 //cheerio boc tach html tra ve nhung gi can thiet thoi
 //var cheerio = require('cheerio');
 //resquest lay du lieu tu web khac
@@ -6,8 +6,8 @@
 //express server
 var express = require('express');
 //bodyparser dung cho react
-//var bodyParser = require('body-parser');
-//var parser = bodyParser.urlencoded({extended:false});
+var bodyParser = require('body-parser');
+var parser = bodyParser.urlencoded({extended:false});
 
 var app = express();
 app.use(express.static('public'));
@@ -27,7 +27,28 @@ app.get('/',function(req, res){
     res.render('trangchu');
     //res.send(mang);
 });
-/*s
+app.post('/getNodes',function (reg,res) {
+    res.send(mang);
+})
+
+app.post('/add',parser,function(req,res){
+    var newNode = req.body.node;//tao node
+    mang.push(newNode);//push vao mang
+    res.send(mang);//tra ve cho client
+});
+
+app.post('/delete',parser,function(req,res){
+    var id = req.body.idXoa;
+    mang.splice(id,1);
+    res.send(mang);
+});
+app.post('/update',parser,function(req,res){
+    var id = req.body.idSua;
+    mang[id]= req.body.noiDung;
+    res.send(mang);
+});
+/*
+ var mang = ['phong vu','bach khoa','dien may xanh','hoang long','tgdd'];
 app.post('/getNotes',function(req,res){
     res.send(mang);
 });
